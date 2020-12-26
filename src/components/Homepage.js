@@ -241,7 +241,6 @@ class Homepage extends Component {
                 </div>
                 
                 <Button color="info" className="clearMessages" onClick={this.toggleModal}>Mesaj Geçmişini Temizle</Button>
-
                 <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Mesajlarımı Temizle</ModalHeader>
                     <ModalBody>

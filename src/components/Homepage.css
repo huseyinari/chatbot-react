@@ -12,8 +12,7 @@
   }
   .clearMessages{
     position: absolute;
-    bottom: 0;
-    margin-bottom: 100px;
+    bottom: 70px;
     margin-left: 25%;
     height: 50px;
   }
