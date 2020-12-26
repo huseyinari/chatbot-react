@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Homepage.css';
 import { animateScroll } from "react-scroll";
 
@@ -15,6 +16,7 @@ class Homepage extends Component {
         chatbotMessages:[],
         responseKeys:[],
         responseValues:[],
+        modal:false,
     }
     componentDidUpdate () {
         this.scrollToBottom();
@@ -201,9 +203,16 @@ class Homepage extends Component {
         }
         return messagesJSX;
     }
+    clearMessages = () => {
+        this.setState({userMessages:[],chatbotMessages:[],modal:!this.state.modal});
+        localStorage.clear();
+    }
+    toggleModal = () => {
+        this.setState({modal:!this.state.modal});
+    }
     render() {
         return (
-            <div>
+            <div className="container">
                 <div className="chat_window">
                     <div className="top_menu">
                         <div className="buttons">
@@ -231,7 +240,18 @@ class Homepage extends Component {
                     </div>
                 </div>
                 
-                
+                <Button color="info" className="clearMessages" onClick={this.toggleModal}>Mesaj Geçmişini Temizle</Button>
+
+                <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Mesajlarımı Temizle</ModalHeader>
+                    <ModalBody>
+                        Chatbot ile olan mesaj geçmişinizi temizlemek istiyor musunuz ?
+                    </ModalBody>
+                    <ModalFooter>
+                    <Button color="danger" onClick={this.clearMessages} >Temizle</Button>{' '}
+                    <Button color="secondary" onClick={this.toggleModal}>İptal</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         )
     }

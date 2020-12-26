@@ -6,7 +6,17 @@
     background-color: #edeff2;
     font-family: "Calibri", "Roboto", sans-serif;
   }
-
+  .container{
+    display: flex;
+    flex:1;
+  }
+  .clearMessages{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
+    margin-left: 25%;
+    height: 50px;
+  }
   .sendIcon{
     margin-right: 10px;
   }
