@@ -17,10 +17,13 @@ class Homepage extends Component {
         responseValues:[],
     }
     componentDidUpdate () {
-        this.scrollToBottom()
+        this.scrollToBottom();
+        localStorage.setItem('userMessages',JSON.stringify(this.state.userMessages));
+        localStorage.setItem('chatbotMessages',JSON.stringify(this.state.chatbotMessages));
     }
     componentDidMount(){
         this.getResponses();
+        this.setState({userMessages:JSON.parse(localStorage.getItem('userMessages')),chatbotMessages:JSON.parse(localStorage.getItem('chatbotMessages'))});
     }
     getCurrency = (message) => {
         const {userMessages,chatbotMessages} = this.state;
