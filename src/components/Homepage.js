@@ -3,8 +3,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Homepage.css';
 import { animateScroll } from "react-scroll";
 
-import userLogo from '../icons/user.png';
-import chatbotLogo from '../icons/chatbot.png';
+import userLogo from '../images/user.png';
+import chatbotLogo from '../images/chatbot.png';
 
 import {IoSend} from 'react-icons/io5';
 
@@ -25,7 +25,9 @@ class Homepage extends Component {
     }
     componentDidMount(){
         this.getResponses();
-        this.setState({userMessages:JSON.parse(localStorage.getItem('userMessages')),chatbotMessages:JSON.parse(localStorage.getItem('chatbotMessages'))});
+        if(localStorage.getItem('userMessages') && localStorage.getItem('chatbotMessages')){
+            this.setState({userMessages:JSON.parse(localStorage.getItem('userMessages')),chatbotMessages:JSON.parse(localStorage.getItem('chatbotMessages'))});
+        }
     }
     getCurrency = (message) => {
         const {userMessages,chatbotMessages} = this.state;
@@ -208,7 +210,7 @@ class Homepage extends Component {
         localStorage.clear();
     }
     toggleModal = () => {
-        this.setState({modal:!this.state.modal});
+        this.setState({modal:!this.state.modal})
     }
     render() {
         return (
@@ -240,7 +242,8 @@ class Homepage extends Component {
                     </div>
                 </div>
                 
-                <Button color="info" className="clearMessages" onClick={this.toggleModal}>Mesaj Geçmişini Temizle</Button>
+                <Button color="danger" className="clearMessages" onClick={this.toggleModal}>Mesaj Geçmişini Temizle</Button>
+
                 <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Mesajlarımı Temizle</ModalHeader>
                     <ModalBody>

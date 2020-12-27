@@ -5,16 +5,19 @@
   body {
     background-color: #edeff2;
     font-family: "Calibri", "Roboto", sans-serif;
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size:auto;
   }
   .container{
     display: flex;
     flex:1;
+    justify-content: center;
   }
   .clearMessages{
-    position: absolute;
-    bottom: 70px;
-    margin-left: 25%;
+    position: relative;
     height: 50px;
+    margin-top: 1%;
   }
   .sendIcon{
     margin-right: 10px;
