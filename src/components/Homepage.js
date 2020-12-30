@@ -114,7 +114,7 @@ class Homepage extends Component {
     }
     getWeather = (message) => {
         const city = message.split(' ')[0];
-        const apiURL = 'http://api.weatherapi.com/v1/current.json?key=4776584238ae41d892b224833200712&q=' + city;
+        const apiURL = 'http://api.weatherapi.com/v1/current.json?key=4776584238ae41d892b224833200712&lang=tr&q=' + city;
         const {userMessages,chatbotMessages} = this.state;
 
         fetch(apiURL,{
@@ -139,9 +139,10 @@ class Homepage extends Component {
         })
         .then(response => response.json())
         .then(responseData => {
+            console.log(responseData);
             this.setState({ 
                 userMessages:[...userMessages,message],
-                chatbotMessages:[...chatbotMessages,'Hava Sıcaklığı : ' + responseData.current.temp_c + ' °C      Hava Durumu : ' + responseData.current.condition.text],
+                chatbotMessages:[...chatbotMessages,'Hava Sıcaklığı : ' + responseData.current.temp_c + '°C Hissedilen Sıcaklık : ' + responseData.current.feelslike_c  + '°C  Hava Durumu : ' + responseData.current.condition.text],
                 message:''
             })
         })
